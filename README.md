@@ -47,7 +47,7 @@ A scraper pulls new exam notifications from sarkariresult.com's "Latest Jobs" li
 
 An admin reviews and edits pending rows at `/admin/review` (gated by the `ADMIN_EMAILS` env var) and approves or rejects each one; approving finds-or-creates the `exams` row and writes the `exam_events` row. If a previously-approved date changes on a later scrape (e.g. a postponement), that row flips back to `pending` for re-review instead of silently changing.
 
-Triggered by Vercel Cron (`vercel.json`) hitting `GET /api/cron/scrape` every 6 hours, guarded by `CRON_SECRET` in production.
+Triggered by Vercel Cron (`vercel.json`) hitting `GET /api/cron/scrape` once daily, guarded by `CRON_SECRET` in production. (Vercel's Hobby plan only allows daily cron schedules; bump this to every few hours if you're on Pro.)
 
 ## Reminders
 
