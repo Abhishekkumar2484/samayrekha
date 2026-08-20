@@ -51,11 +51,16 @@ Triggered by Vercel Cron (`vercel.json`) hitting `GET /api/cron/scrape` every 6 
 
 ## Reminders
 
-`GET /api/cron/reminders` (daily via `vercel.json`) checks every tracked exam (`reminders_enabled = true`) for events happening today or in 3 days, and sends a Web Push notification per user/event/reminder-type not already logged in `reminders_sent`. Users opt in via the "रिमाइंडर चालू करें" button on `/discover`, which registers a push subscription (`src/components/push-subscribe.tsx`) stored on their profile. The service worker (`public/sw.js`) handles the `push` and `notificationclick` events.
+`GET /api/cron/reminders` (daily via `vercel.json`) checks every tracked exam (`reminders_enabled = true`) for events happening today or in 3 days, and sends a Web Push notification per user/event/reminder-type not already logged in `reminders_sent`. Users opt in via the "Enable reminders" button on `/discover`, which registers a push subscription (`src/components/push-subscribe.tsx`) stored on their profile. The service worker (`public/sw.js`) handles the `push` and `notificationclick` events.
+
+## Project structure
+
+The Next.js app lives in [`frontend/`](frontend/) — everything below (`src/`, `public/`, `package.json`, the SQL files) is relative to that folder. If you're setting this up on Vercel, set the project's **Root Directory** to `frontend`.
 
 ## Getting started
 
 ```bash
+cd frontend
 npm install
 npm run dev
 ```
