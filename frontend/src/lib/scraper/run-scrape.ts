@@ -87,11 +87,12 @@ async function processLink(
 }
 
 /**
- * Fetches the sarkariresult.com "Latest Jobs" listing, visits each
- * notification page (in small concurrent batches — this can easily be 100+
- * pages, and a single unresponsive one must not stall the whole run), and
- * upserts "Important Dates" rows into scraped_events for admin review. Never
- * writes directly to exams/exam_events.
+ * Fetches every sarkariresult.com listing section (Latest Jobs, Admit Card,
+ * Answer Key, Result, Admission, Syllabus, Important), visits each deduped
+ * notification page (in small concurrent batches — this can easily be
+ * several hundred pages, and a single unresponsive one must not stall the
+ * whole run), and upserts "Important Dates" rows into scraped_events for
+ * admin review. Never writes directly to exams/exam_events.
  */
 export async function runScrape(): Promise<ScrapeSummary> {
   const supabase = createAdminClient();

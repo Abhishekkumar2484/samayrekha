@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { runScrape } from "@/lib/scraper/run-scrape";
 
-export const maxDuration = 120;
+export const maxDuration = 280;
 
 export async function GET(request: Request) {
   if (process.env.NODE_ENV === "production") {
